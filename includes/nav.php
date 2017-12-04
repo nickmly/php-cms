@@ -1,5 +1,6 @@
 <?php 
     include "includes/db.php";
+    include "includes/functions.php";
 ?>
  <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,12 +19,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <?php
-                    $query = "SELECT * FROM categories";
-                    $result = mysqli_query($db_connect, $query);
-                    while($row = mysqli_fetch_assoc($result)) {
-                        $title = $row["cat_title"];
-                        echo "<li><a href='#'>". $title . "</a></li>";
-                    }
+                    displayAllCategories();
                 ?>
                 <li>
                     <a href="#">About</a>
