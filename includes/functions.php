@@ -77,6 +77,37 @@
         }
     }
 
+    function addPost() {
+        global $db_connect;
+        if(isset($_POST['post_submit'])){
+            $post_title = $_POST['post_title'];
+            $post_category = $_POST['post_cat'];
+            $post_author = $_POST['post_author'];
+            $post_tags = $_POST['post_tags'];
+            $post_content = $_POST['post_content'];
+            $post_status = $_POST['post_status'];
+    
+            $post_image = $_FILES['post_image']['name'];
+            $post_image_temp = $_FILES['post_image']['tmp_name'];
+            $post_date = date('d-m-y');
+            $post_comment_count = 4;
+            
+            move_uploaded_file($post_image_temp, "../images/$post_image"); // Move image to images folder
+
+            $query = "INSERT INTO posts (post_category_id,
+                                post_title, post_author, post_date, post_image,
+                                post_content, post_tags, post_comment_count, post_status) ";
+            $query .= "VALUES($post_category, '$post_title', '$post_author',
+                        now(), '$post_image', '$post_content', '$post_tags', '$post_comment_count', '$post_status')";
+            
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: view_all_posts.php");
+        }
+    }
+
     function getAllPosts() {
         global $db_connect;
         $query = "SELECT * FROM posts";
@@ -104,7 +135,7 @@
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
-            <img class="img-responsive" src="<?php echo $image; ?>" alt="">
+            <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
             <hr>
             <p><?php echo $content; ?></p>
             <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
