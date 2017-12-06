@@ -44,7 +44,6 @@
             die("Error! Query failed: " . mysqli_error($db_connect));
         }
         return mysqli_fetch_assoc($result)['cat_title'];
-        
     }
 
     function editCategory() {
@@ -76,6 +75,13 @@
             }
             header("Location: categories.php");
         }
+    }
+
+    function getAllPosts() {
+        global $db_connect;
+        $query = "SELECT * FROM posts";
+        $result = mysqli_query($db_connect, $query);
+        return $result;
     }
 
     function displayAllPosts() {
