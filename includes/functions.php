@@ -77,6 +77,66 @@
         }
     }
 
+    function deletePost() {
+        global $db_connect;
+        if(isset($_GET['delete_post'])){
+            $post_id = $_GET['delete_post'];
+            $query = "DELETE FROM posts WHERE post_id = '$post_id'";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: posts.php");
+        }
+    }
+
+    function getPost($id) {
+        global $db_connect;
+        $query = "SELECT * FROM posts WHERE post_id = $id";
+        $result = mysqli_query($db_connect, $query);
+        return mysqli_fetch_assoc($result);
+    }
+
+    function editPost() {
+        global $db_connect;
+        if(isset($_POST['post_update'])){
+            $post_id = $_GET['update_post'];
+
+            $post_title = $_POST['post_title'];
+            $post_category = $_POST['post_cat'];
+            $post_author = $_POST['post_author'];
+            $post_tags = $_POST['post_tags'];
+            $post_content = $_POST['post_content'];
+            $post_status = $_POST['post_status'];
+    
+            $post_image = $_FILES['post_image']['name'];
+            $post_image_temp = $_FILES['post_image']['tmp_name'];
+            $post_date = date('d-m-y');
+            $post_comment_count = 0;
+
+            if(empty($post_image)) {
+                $query = "SELECT * FROM posts WHERE post_id = $post_id";
+                $result = mysqli_query($db_connect, $query);
+                $post_image = mysqli_fetch_assoc($result)['post_image'];
+            }
+            
+            move_uploaded_file($post_image_temp, "../images/$post_image"); // Move image to images folder
+             
+            $query = "UPDATE posts SET post_title = '$post_title',
+            post_category_id='$post_category', post_author ='$post_author',
+            post_tags ='$post_tags', post_content='$post_content', post_image='$post_image',
+            post_status='$post_status', post_date='$post_date', post_comment_count= $post_comment_count ";
+           
+           
+            $query .= "WHERE post_id = $post_id";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: posts.php");
+        }
+    }
+
     function addPost() {
         global $db_connect;
         if(isset($_POST['post_submit'])){
@@ -104,7 +164,7 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
-            header("Location: view_all_posts.php");
+            header("Location: posts.php");
         }
     }
 

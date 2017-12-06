@@ -9,8 +9,15 @@
         <input type="text" name="post_title" class="form-control">        
     </div>
     <div class="form-group">
-        <label for="post_cat">Post Category ID</label>
-        <input type="text" name="post_cat" class="form-control">        
+        <label for="post_cat">Post Category</label>
+        <select class="form-control" name="post_cat">
+            <?php
+                $categories = getAllCategories();
+                while($row = mysqli_fetch_assoc($categories)) {
+                    echo "<option value='" . $row['cat_id'] . "'>" . $row['cat_title'] ."</option>";
+                }
+            ?>
+        </select>  
     </div>
     <div class="form-group">
         <label for="post_author">Post Author</label>
