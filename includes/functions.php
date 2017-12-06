@@ -1,5 +1,5 @@
 <?php 
-    include "includes/db.php";
+    include __DIR__ . "/db.php";
 ?>
 <?php
     function displayAllCategories() {
@@ -9,6 +9,41 @@
         while($row = mysqli_fetch_assoc($result)) {
             $title = $row["cat_title"];
             echo "<li><a href='#'>". $title . "</a></li>";
+        }
+    }
+
+    function getAllCategories() {
+        global $db_connect;
+        $query = "SELECT * FROM categories";
+        $result = mysqli_query($db_connect, $query);
+        return $result;
+    }
+
+    function addCategory() {
+        global $db_connect;
+        if(isset($_POST['submit_cat'])){
+            $cat_title = $_POST['cat_title'];
+            if($cat_title == "" || empty($cat_title)){
+                echo "You must enter a title!";
+                return;
+            }
+            $query = "INSERT INTO categories (cat_title) VALUES ('$cat_title')";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                echo "Error! Query failed: " . mysqli_error($db_connect);
+            }
+        }
+    }
+
+    function deleteCategory() {
+        global $db_connect;
+        if(isset($_GET['delete_cat'])){
+            $cat_id = $_GET['id'];
+            $query = "DELETE FROM categories WHERE cat_id = '$cat_id'";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                echo "Error! Query failed: " . mysqli_error($db_connect);
+            }
         }
     }
 
