@@ -8,7 +8,7 @@
         $result = mysqli_query($db_connect, $query);
         while($row = mysqli_fetch_assoc($result)) {
             $title = $row["cat_title"];
-            echo "<li><a href='#'>". $title . "</a></li>";
+            echo "<li><a href='index.php?category=". $row['cat_id'] ."'>". $title . "</a></li>";
         }
     }
 
@@ -125,7 +125,7 @@
             $query = "UPDATE posts SET post_title = '$post_title',
             post_category_id='$post_category', post_author ='$post_author',
             post_tags ='$post_tags', post_content='$post_content', post_image='$post_image',
-            post_status='$post_status', post_date='$post_date', post_comment_count= $post_comment_count ";
+            post_status='$post_status', post_date=now(), post_comment_count= $post_comment_count ";
            
            
             $query .= "WHERE post_id = $post_id";
@@ -188,7 +188,7 @@
             ?>
            
             <h2>
-                <a href="#"><?php echo $title; ?></a>
+                <a href="post.php?p_id=<?php echo $row['post_id']; ?>"><?php echo $title; ?></a>
             </h2>
             <p class="lead">
                 by <a href="index.php"><?php echo $author; ?></a>
@@ -205,6 +205,37 @@
         }
     }
 
+    function displayPostsInCategory($cat_id) {
+        global $db_connect;
+        $query = "SELECT * FROM posts WHERE post_category_id = $cat_id ";
+        $result = mysqli_query($db_connect, $query);
+        while($row = mysqli_fetch_assoc($result)) {
+            $title = $row["post_title"];
+            $author = $row["post_author"];
+            $content = $row["post_content"];
+            $date = $row["post_date"];
+            $image = $row["post_image"];
+            ?>
+           
+            <h2>
+                <a href="post.php?p_id=<?php echo $row['post_id']; ?>"><?php echo $title; ?></a>
+            </h2>
+            <p class="lead">
+                by <a href="index.php"><?php echo $author; ?></a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
+            <hr>
+            <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            <hr>
+            <p><?php echo $content; ?></p>
+            <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+            <hr>
+        <?php
+        }
+    }
+    
+
     function displayPosts($posts) {
         while($row = mysqli_fetch_assoc($posts)){
             
@@ -216,7 +247,7 @@
             ?>
            
             <h2>
-                <a href="#"><?php echo $title; ?></a>
+            <a href="post.php?p_id=<?php echo $row['post_id']; ?>"><?php echo $title; ?></a>
             </h2>
             <p class="lead">
                 by <a href="index.php"><?php echo $author; ?></a>
@@ -226,7 +257,7 @@
             <img class="img-responsive" src="<?php echo $image; ?>" alt="">
             <hr>
             <p><?php echo $content; ?></p>
-            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
             <hr>
         <?php

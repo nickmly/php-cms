@@ -33,35 +33,37 @@
                         </form>
                     </div>
                     <div class="col-xs-6">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Category Title</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $categories = getAllCategories();
-                                    while($row = mysqli_fetch_assoc($categories)){
-                                        ?>
-                                        <tr>
-                                        <?php
-                                            echo "<td>" . $row['cat_id'] . "</td>";
-                                            echo "<td>" . $row['cat_title'] . "</td>";
-                                        ?>                                        
-                                        <td>                                            
-                                            <a class='btn btn-warning btn-xs' href="?update_cat=<?php echo $row['cat_id']; ?>">Edit</a> 
-                                        </td>
-                                        <td>                                            
-                                            <a class='btn btn-danger btn-xs' href="?delete_cat=<?php echo $row['cat_id']; ?>">Delete</a> 
-                                        </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                ?>                                                        
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Category Title</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $categories = getAllCategories();
+                                        while($row = mysqli_fetch_assoc($categories)){
+                                            ?>
+                                            <tr>
+                                            <?php
+                                                echo "<td>" . $row['cat_id'] . "</td>";
+                                                echo "<td>" . $row['cat_title'] . "</td>";
+                                            ?>                                        
+                                            <td>                                            
+                                                <a class='btn btn-warning btn-xs' href="?update_cat=<?php echo $row['cat_id']; ?>">Edit</a> 
+                                            </td>
+                                            <td>                                            
+                                                <a class='btn btn-danger btn-xs' href="?delete_cat=<?php echo $row['cat_id']; ?>">Delete</a> 
+                                            </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    ?>                                                        
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <?php
                         if(isset($_GET['update_cat'])) {

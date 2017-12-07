@@ -17,10 +17,14 @@
                 Page Heading
                 <small>Secondary Text</small>
             </h1>
-            <?php 
-                displayAllPosts();
-            ?>
-            
+
+            <?php         
+                if(isset($_GET['category'])) {
+                    displayPostsInCategory($_GET['category']);
+                } else {
+                    displayAllPosts();
+                }
+            ?>           
 
             <!-- Pager -->
             <ul class="pager">
