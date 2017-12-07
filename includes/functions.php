@@ -2,6 +2,9 @@
     include __DIR__ . "/db.php";
 ?>
 <?php
+    //////////////////////////////////
+    // CATEGORIES
+    //////////////////////////////////
     function displayAllCategories() {
         global $db_connect;
         $query = "SELECT * FROM categories";
@@ -77,6 +80,12 @@
         }
     }
 
+    //////////////////////////////////
+    //////////////////////////////////
+
+    //////////////////////////////////
+    // POSTS
+    //////////////////////////////////
     function deletePost() {
         global $db_connect;
         if(isset($_GET['delete_post'])){
@@ -197,8 +206,8 @@
             <hr>
             <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
             <hr>
-            <p><?php echo $content; ?></p>
-            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <p><?php echo substr($content,0,100); ?></p>
+            <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
             <hr>
         <?php
@@ -254,7 +263,7 @@
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
-            <img class="img-responsive" src="<?php echo $image; ?>" alt="">
+            <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
             <hr>
             <p><?php echo $content; ?></p>
             <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -280,4 +289,55 @@
                 displayPosts($result);
         }
     }
+    //////////////////////////////////
+    //////////////////////////////////
+
+    //////////////////////////////////
+    // COMMENTS
+    //////////////////////////////////
+    function getAllComments() {
+        global $db_connect;
+        $query = "SELECT * FROM comments";
+        $result = mysqli_query($db_connect, $query);
+        return $result;
+    }
+
+    function getAllPostComments($post_id){
+        global $db_connect;
+        $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+        $result = mysqli_query($db_connect, $query);
+        return $result;
+    }
+
+    function changeCommentStatus(){
+        global $db_connect;
+        if(isset($_GET['approve_comment'])){
+
+        }
+    }
+
+    function addComment() {
+        global $db_connect;
+        if(isset($_POST['create_comment'])){
+            $comment_post_id = $_GET['p_id'];
+            $comment_author = $_POST['comment_author'];
+            $comment_email = $_POST['comment_email'];
+            $comment_content = $_POST['comment_content'];
+            $comment_status = "pending";
+
+            $query = "INSERT INTO comments (comment_post_id, comment_date,
+                                    comment_author, comment_email, comment_content,
+                                    comment_status) ";
+            $query .= "VALUES ($comment_post_id, now(), '$comment_author',
+                            '$comment_email', '$comment_content', '$comment_status')";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: post.php?p_id=$comment_post_id");
+        }
+    }
+
+    //////////////////////////////////
+    //////////////////////////////////
 ?>

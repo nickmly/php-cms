@@ -3,7 +3,6 @@
     include "includes/header.php";
     include "includes/nav.php";
     include_once "includes/functions.php";
-
     $post = getPost($_GET['p_id']);
 ?>
 
@@ -46,62 +45,58 @@
             <hr>
 
             <!-- Blog Comments -->
-
+            <?php
+                addComment();
+            ?>
             <!-- Comments Form -->
             <div class="well">
                 <h4>Leave a Comment:</h4>
-                <form role="form">
+                <form role="form" action="" method="post">
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <label for="comment_author">Author</label>
+                        <input name="comment_author" type="text" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <label for="comment_email">Email</label>
+                        <input name="comment_email" type="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment_content">Content</label>
+                        <textarea name="comment_content" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button name="create_comment" type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
 
             <hr>
 
             <!-- Posted Comments -->
-
+            <?php
+                $comments = getAllPostComments($_GET['p_id']);
+            ?>
             <!-- Comment -->
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
-                    </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div>
-
-            <!-- Comment -->
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
-                    </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    <!-- Nested Comment -->
+            <?php
+                while($row = mysqli_fetch_assoc($comments)){
+            ?>
                     <div class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
                         </a>
                         <div class="media-body">
-                            <h4 class="media-heading">Nested Start Bootstrap
-                                <small>August 25, 2014 at 9:30 PM</small>
+                            <h4 class="media-heading"><?php echo $row['comment_author']; ?>
+                                <small><?php echo $row['comment_date']; ?></small>
                             </h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            <?php echo $row['comment_content']; ?>
                         </div>
                     </div>
-                    <!-- End Nested Comment -->
-                </div>
-            </div>
+                <?php
+                }
+            ?>
+            
+           
 
         </div>
+        <hr>
 
          <!-- Blog Sidebar Widgets Column -->
          <?php include "includes/sidebar.php"; ?>
