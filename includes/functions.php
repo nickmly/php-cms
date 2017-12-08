@@ -387,4 +387,61 @@
 
     //////////////////////////////////
     //////////////////////////////////
+
+    
+    //////////////////////////////////
+    // USERS
+    //////////////////////////////////
+
+    function getAllUsers() {
+        global $db_connect;
+        $query = "SELECT * FROM users";
+        $result = mysqli_query($db_connect, $query);
+        return $result;
+    }
+
+    function addUser() {
+        global $db_connect;
+        if(isset($_POST['user_submit'])){
+            $user_username = $_POST['user_username'];
+            $user_password = $_POST['user_password'];
+            $user_email = $_POST['user_email'];
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_role = $_POST['user_role'];
+    
+            $user_image = $_FILES['user_image']['name'];
+            $user_image_temp = $_FILES['user_image']['tmp_name'];
+
+            
+            move_uploaded_file($user_image_temp, "../images/$user_image"); // Move image to images folder
+
+            $query = "INSERT INTO users (user_username, user_password,
+                                        user_email, user_firstname,
+                                        user_lastname, user_role, user_image) ";
+            $query .= "VALUES('$user_username', '$user_password', '$user_email',
+                            '$user_firstname', '$user_lastname', '$user_role', '$user_image')";
+            
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: users.php");
+        }
+    }
+
+    function deleteUser() {
+        global $db_connect;
+        if(isset($_GET['delete_user'])){
+            $user_id = $_GET['delete_user'];
+            $query = "DELETE FROM users WHERE user_id = $user_id";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+        }
+    }
+    
+    //////////////////////////////////
+    //////////////////////////////////
 ?>
