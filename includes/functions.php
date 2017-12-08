@@ -120,8 +120,7 @@
     
             $post_image = $_FILES['post_image']['name'];
             $post_image_temp = $_FILES['post_image']['tmp_name'];
-            $post_date = date('d-m-y');
-            $post_comment_count = 0;
+            $post_date = date('d-m-y');            
 
             if(empty($post_image)) {
                 $query = "SELECT * FROM posts WHERE post_id = $post_id";
@@ -134,7 +133,7 @@
             $query = "UPDATE posts SET post_title = '$post_title',
             post_category_id='$post_category', post_author ='$post_author',
             post_tags ='$post_tags', post_content='$post_content', post_image='$post_image',
-            post_status='$post_status', post_date=now(), post_comment_count= $post_comment_count ";
+            post_status='$post_status', post_date=now()";
            
            
             $query .= "WHERE post_id = $post_id";
@@ -159,7 +158,7 @@
             $post_image = $_FILES['post_image']['name'];
             $post_image_temp = $_FILES['post_image']['tmp_name'];
             $post_date = date('d-m-y');
-            $post_comment_count = 4;
+            $post_comment_count = 0;
             
             move_uploaded_file($post_image_temp, "../images/$post_image"); // Move image to images folder
 
@@ -186,7 +185,7 @@
 
     function displayAllPosts() {
         global $db_connect;
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts WHERE post_status = 'published'";
         $result = mysqli_query($db_connect, $query);
         while($row = mysqli_fetch_assoc($result)) {
             $title = $row["post_title"];
@@ -216,7 +215,7 @@
 
     function displayPostsInCategory($cat_id) {
         global $db_connect;
-        $query = "SELECT * FROM posts WHERE post_category_id = $cat_id ";
+        $query = "SELECT * FROM posts WHERE post_category_id = $cat_id AND post_status = 'published'";
         $result = mysqli_query($db_connect, $query);
         while($row = mysqli_fetch_assoc($result)) {
             $title = $row["post_title"];
@@ -278,7 +277,7 @@
         if(isset($_POST['submit'])) {
             $search = $_POST['search'];
             // Select all post_tags similiar to search term
-            $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search' ";
+            $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search'";
             $result = mysqli_query($db_connect, $query);
             if(!$result) {
                 die("Search query failed! " . mysqli_error($db_connect));
@@ -287,6 +286,24 @@
             echo "<h3>Results found: " . $count . "</h3>";
             if($count > 0)
                 displayPosts($result);
+        }
+    }
+
+    function addCommentToPost($post_id){
+        global $db_connect;
+        $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $post_id";
+        $result = mysqli_query($db_connect, $query);
+        if(!$result) {
+            die("Error! Query failed: " . mysqli_error($db_connect));
+        }
+    }
+
+    function removeCommentFromPost($post_id){
+        global $db_connect;
+        $query = "UPDATE posts SET post_comment_count = post_comment_count - 1 WHERE post_id = $post_id";
+        $result = mysqli_query($db_connect, $query);
+        if(!$result) {
+            die("Error! Query failed: " . mysqli_error($db_connect));
         }
     }
     //////////////////////////////////
@@ -304,15 +321,30 @@
 
     function getAllPostComments($post_id){
         global $db_connect;
-        $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+        $query = "SELECT * FROM comments WHERE comment_post_id = $post_id AND comment_status = 'approved' ORDER BY comment_date DESC";
         $result = mysqli_query($db_connect, $query);
         return $result;
     }
+    
 
     function changeCommentStatus(){
         global $db_connect;
         if(isset($_GET['approve_comment'])){
-
+            $comment_id = $_GET['approve_comment'];
+            $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $comment_id";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: comments.php");
+        } else if(isset($_GET['deny_comment'])){
+            $comment_id = $_GET['deny_comment'];
+            $query = "UPDATE comments SET comment_status = 'denied' WHERE comment_id = $comment_id";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: comments.php");
         }
     }
 
@@ -334,7 +366,22 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
+            addCommentToPost($comment_post_id);
             header("Location: post.php?p_id=$comment_post_id");
+        }
+    }
+
+    function deleteComment() {
+        global $db_connect;
+        if(isset($_GET['delete_comment'])){
+            $comment_id = $_GET['delete_comment'];
+            $query = "DELETE FROM comments WHERE comment_id = $comment_id";
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            removeCommentFromPost($_GET['p_id']);
+            header("Location: comments.php");
         }
     }
 

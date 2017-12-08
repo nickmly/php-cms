@@ -43,7 +43,10 @@
     </div>
     <div class="form-group">
         <label for="post_status">Post Status</label>
-        <input type="text" name="post_status" class="form-control" value="<?php echo $post['post_status']; ?>">
+        <select class="form-control" name="post_status">
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+        </select>        
     </div>
     <div class="form-group">        
         <input type="submit" name="post_update" class="btn btn-primary" value="Publish">
