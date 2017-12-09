@@ -400,6 +400,13 @@
         return $result;
     }
 
+    function getUser($user_id) {
+        global $db_connect;
+        $query = "SELECT * FROM users WHERE user_id = $user_id";
+        $result = mysqli_query($db_connect,$query);
+        return mysqli_fetch_assoc($result);
+    }
+
     function addUser() {
         global $db_connect;
         if(isset($_POST['user_submit'])){
@@ -422,6 +429,39 @@
             $query .= "VALUES('$user_username', '$user_password', '$user_email',
                             '$user_firstname', '$user_lastname', '$user_role', '$user_image')";
             
+            $result = mysqli_query($db_connect, $query);
+            if(!$result) {
+                die("Error! Query failed: " . mysqli_error($db_connect));
+            }
+            header("Location: users.php");
+        }
+    }
+
+    function editUser(){
+        global $db_connect;
+        if(isset($_POST['user_update'])){
+            $user_id = $_GET['update_user'];
+            $user_username = $_POST['user_username'];
+            $user_password = $_POST['user_password'];
+            $user_email = $_POST['user_email'];
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_role = $_POST['user_role'];
+    
+            $user_image = $_FILES['user_image']['name'];
+            $user_image_temp = $_FILES['user_image']['tmp_name'];
+
+            if(empty($user_image)) {
+                $query = "SELECT * FROM users WHERE user_id = $user_id";
+                $result = mysqli_query($db_connect, $query);
+                $user_image = mysqli_fetch_assoc($result)['user_image'];
+            }
+            
+            move_uploaded_file($user_image_temp, "../images/$user_image"); // Move image to images folder
+
+            $query = "UPDATE users SET user_username = '$user_username', user_password = '$user_password',
+                    user_email = '$user_email', user_firstname = '$user_firstname', user_lastname = '$user_lastname',
+                    user_role = '$user_role', user_image = '$user_image'";
             $result = mysqli_query($db_connect, $query);
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));

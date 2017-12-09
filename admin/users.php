@@ -25,7 +25,10 @@
                         switch($source) {
                             case "add":
                                 include "includes/add_user.php"; 
-                            break;                          
+                            break;
+                            case "edit":
+                                include "includes/edit_user.php"; 
+                            break;                   
                             default:
                                 include "includes/view_all_users.php"; 
                             break;
