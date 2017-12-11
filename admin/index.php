@@ -1,5 +1,6 @@
 <?php 
     include "includes/admin_header.php";
+    include_once "../includes/functions.php";
 ?>
 <div id="wrapper">
     <!-- Navigation -->
@@ -14,7 +15,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Welcome to your Dashboard
-                        <small>Subheading</small>
+                        <small><?php showCurrentUsername(); ?></small>
                     </h1>
                 </div>
             </div>

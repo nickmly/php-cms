@@ -1,6 +1,13 @@
 <?php
     ob_start();
     include "../includes/db.php";
+    include "../includes/functions.php";
+?>
+
+<?php
+    if(getCurrentUserRole() != "admin") {
+        header("Location: ../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

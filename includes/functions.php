@@ -1,5 +1,8 @@
 <?php 
     include __DIR__ . "/db.php";
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }  
 ?>
 <?php
     //////////////////////////////////
@@ -412,6 +415,15 @@
         if(isset($_POST['user_submit'])){
             $user_username = $_POST['user_username'];
             $user_password = $_POST['user_password'];
+
+            //Hash password
+            $hash = "$2y$10$"; // run blowfish 10 times
+            $salt = "iusesomecrazystrings22"; // random string for salt
+            $hashAndSalt = $hash . $salt;
+            $hashedPass = crypt($user_password, $hashAndSalt);
+            //
+
+
             $user_email = $_POST['user_email'];
             $user_firstname = $_POST['user_firstname'];
             $user_lastname = $_POST['user_lastname'];
@@ -426,7 +438,7 @@
             $query = "INSERT INTO users (user_username, user_password,
                                         user_email, user_firstname,
                                         user_lastname, user_role, user_image) ";
-            $query .= "VALUES('$user_username', '$user_password', '$user_email',
+            $query .= "VALUES('$user_username', '$hashedPass', '$user_email',
                             '$user_firstname', '$user_lastname', '$user_role', '$user_image')";
             
             $result = mysqli_query($db_connect, $query);
@@ -479,6 +491,21 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
+        }
+    }
+
+    function showCurrentUsername() {
+        if(isset($_SESSION['username']))
+            echo $_SESSION['username'];
+    }
+
+    function isLoggedIn() {
+        return isset($_SESSION['username']);
+    }
+
+    function getCurrentUserRole(){
+        if(isset($_SESSION['user_role'])){
+            return $_SESSION['user_role'];
         }
     }
     

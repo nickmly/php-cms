@@ -20,10 +20,24 @@
             <ul class="nav navbar-nav">
                 <?php
                     displayAllCategories();
+                    if(getCurrentUserRole() == "admin") {                        
+                    ?>
+                     <li>
+                        <a href="admin/index.php">Admin</a>
+                    </li>
+                    <?php
+                    }
+                    if(isLoggedIn()) {
+                    ?>
+                    <li>
+                        <a href="includes/logout.php">Log Out</a>
+                    </li>
+                    <?php
+                    }
+                    
                 ?>
-                <li>
-                    <a href="admin/index.php">Admin</a>
-                </li>
+                
+               
                 <!-- <li>
                     <a href="#">Services</a>
                 </li>
