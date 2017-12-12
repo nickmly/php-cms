@@ -44,8 +44,16 @@
     <div class="form-group">
         <label for="post_status">Post Status</label>
         <select class="form-control" name="post_status">
-            <option value="draft">Draft</option>
-            <option value="published">Published</option>
+        <?php
+            if($post['post_status'] == 'draft') {
+                echo "<option selected value='draft'>Draft</option>";
+                echo "<option value='published'>Published</option>";
+            } else {
+                echo "<option value='draft'>Draft</option>";
+                echo "<option selected value='published'>Published</option>";
+            }
+        ?>
+
         </select>        
     </div>
     <div class="form-group">        

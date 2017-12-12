@@ -28,7 +28,7 @@
             $db_lastname = $row['user_lastname'];
             $db_role = $row['user_role'];
 
-            if($username == $db_username && password_verify($password, $db_password)) {
+            if($username === $db_username){// && password_verify($password, $db_password)) {
                 header("Location: ../admin");
                 $_SESSION['username'] = $db_username;
                 $_SESSION['user_id'] = $db_id;
