@@ -195,6 +195,13 @@
         }
     }
 
+    function getAllPublishedPosts() {
+        global $db_connect;
+        $query = "SELECT * FROM posts WHERE post_status = 'published'";
+        $result = mysqli_query($db_connect, $query);
+        return $result;
+    }
+
     function getAllDraftPosts() {
         global $db_connect;
         $query = "SELECT * FROM posts WHERE post_status = 'draft'";

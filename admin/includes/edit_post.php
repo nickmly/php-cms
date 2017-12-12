@@ -3,7 +3,8 @@
     $post = getPost($_GET['update_post']);
     editPost();
 ?>
-
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="post_title">Post Title</label>

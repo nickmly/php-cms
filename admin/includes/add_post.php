@@ -2,6 +2,8 @@
     include_once __DIR__ . "/../../includes/functions.php";
     addPost();
 ?>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
 
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">

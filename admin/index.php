@@ -7,6 +7,7 @@
     $comment_count = getTableCount("comments");
     $pending_comment_count = mysqli_num_rows(getAllPendingComments());
     $draft_post_count = mysqli_num_rows(getAllDraftPosts());
+    $published_post_count = mysqli_num_rows(getAllPublishedPosts());
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -17,8 +18,8 @@
     var data = google.visualization.arrayToDataTable([
         ['Data', 'Count'],
         <?php
-            $element_text = ['Active Posts', 'Comments', 'Users', 'Categories', 'Pending Comments', 'Draft Posts'];
-            $element_count = [$post_count, $comment_count, $user_count, $category_count, $pending_comment_count, $draft_post_count];
+            $element_text = ['Posts', 'Draft Posts', 'Published Posts', 'Comments', 'Pending Comments', 'Users', 'Categories'];
+            $element_count = [$post_count, $draft_post_count, $published_post_count, $comment_count, $pending_comment_count, $user_count, $category_count];
             for($i = 0; $i < 6; $i++) {
                 echo "['{$element_text[$i]}'" . ", " . "{$element_count[$i]}],";
             }
