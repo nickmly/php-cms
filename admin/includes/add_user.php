@@ -1,6 +1,6 @@
 <?php
     include_once __DIR__ . "/../../includes/functions.php";
-    addUser();
+    addUser(true);
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">

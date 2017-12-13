@@ -1,6 +1,6 @@
 <?php 
     include "includes/db.php";
-    include "includes/functions.php";
+    include_once "includes/functions.php";
 ?>
  <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -18,8 +18,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <?php
-                    displayAllCategories();
+                <?php                    
                     if(getCurrentUserRole() == "admin") {                        
                     ?>
                      <li>
@@ -33,7 +32,14 @@
                         <a href="includes/logout.php">Log Out</a>
                     </li>
                     <?php
+                    } else {
+                    ?>
+                        <li>
+                            <a href="register.php">Register</a>
+                        </li>
+                        <?php
                     }
+
                     
                 ?>
                 

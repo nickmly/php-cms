@@ -236,7 +236,9 @@
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
-            <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
+                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            </a>
             <hr>
             <p><?php echo substr($content,0,100); ?></p>
             <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -266,7 +268,9 @@
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
-            <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
+                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            </a>
             <hr>
             <p><?php echo $content; ?></p>
             <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -294,7 +298,9 @@
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
-            <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
+                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            </a>
             <hr>
             <p><?php echo $content; ?></p>
             <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -445,7 +451,7 @@
         return mysqli_fetch_assoc($result);
     }
 
-    function addUser() {
+    function addUser($isAdmin) {
         global $db_connect;
         if(isset($_POST['user_submit'])){
             $user_username = $_POST['user_username'];
@@ -480,7 +486,12 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
-            header("Location: users.php");
+            if($isAdmin) {
+                header("Location: users.php");
+            } else {                
+                header("Location: index.php");
+            }
+            
         }
     }
 
