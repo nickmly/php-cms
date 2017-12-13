@@ -10,5 +10,6 @@
     $_SESSION['user_lastname'] = null;
     $_SESSION['user_role'] = null;
     session_unset();
+    $_SESSION['success_message'] = "Logged out successfully";
     header("Location: ../index.php");
 ?>

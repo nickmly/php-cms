@@ -1,3 +1,8 @@
+<?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,4 +22,31 @@
 
 </head>
 <body>
+<div class="container">
+<?php
+    if(isset($_SESSION['success_message'])) {
+        echo "<div class='alert alert-success alert-dismissable'>" . $_SESSION['success_message'];
+    ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    <?php
+    } else if(isset($_SESSION['error_message'])){
+        echo "<div class='alert alert-danger alert-dismissable'>" . $_SESSION['error_message'];
+    ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    <?php
+    }
+    ?>
+    
+<?php
+// Clear session messages
+    $_SESSION['success_message'] = null;
+    $_SESSION['error_message'] = null;
+?>
+
    

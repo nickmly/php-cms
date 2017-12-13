@@ -380,6 +380,7 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
+            $_SESSION['success_message'] = "Approved comment successfully";  
             header("Location: comments.php");
         } else if(isset($_GET['deny_comment'])){
             $comment_id = $_GET['deny_comment'];
@@ -388,6 +389,7 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
+            $_SESSION['success_message'] = "Denied comment successfully";  
             header("Location: comments.php");
         }
     }
@@ -411,6 +413,7 @@
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
             addCommentToPost($comment_post_id);
+            $_SESSION['success_message'] = "Your comment has been submitted for approval.";  
             header("Location: post.php?p_id=$comment_post_id");
         }
     }
@@ -487,8 +490,10 @@
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
             if($isAdmin) {
+                $_SESSION['success_message'] = "Added user successfully";  
                 header("Location: users.php");
-            } else {                
+            } else {
+                $_SESSION['success_message'] = "Successfully signed up!";        
                 header("Location: index.php");
             }
             
@@ -524,6 +529,7 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
+            $_SESSION['success_message'] = "Edited user successfully";  
             header("Location: users.php");
         }
     }
@@ -557,6 +563,7 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
+            $_SESSION['success_message'] = "Edited user successfully";  
             header("Location: users.php");
         }
     }
