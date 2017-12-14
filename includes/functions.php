@@ -117,6 +117,7 @@
             header("Location: posts.php");
         }
     }
+    
 
     function getPost($id) {
         global $db_connect;
@@ -160,7 +161,36 @@
             if(!$result) {
                 die("Error! Query failed: " . mysqli_error($db_connect));
             }
+            $_SESSION['success_message'] = "Updated post successfully"; 
+
             header("Location: posts.php");
+        }
+    }
+
+    function editAllPosts() {
+        global $db_connect;
+        if(isset($_POST['checkBoxArray'])) {
+            $bulk_options = $_POST['bulk-options'];            
+            foreach($_POST['checkBoxArray'] as $checkboxID){
+                $query = "";
+                switch($bulk_options) {
+                    
+                    case "published":
+                        $query = "UPDATE posts SET post_status = '$bulk_options' WHERE post_id = $checkboxID";
+                    break;
+                    case "draft":
+                        $query = "UPDATE posts SET post_status = '$bulk_options' WHERE post_id = $checkboxID";
+                    break;
+                    case "delete":
+                        $query = "DELETE FROM posts WHERE post_id = $checkboxID";
+                    break;
+                }
+                $result = mysqli_query($db_connect, $query);
+                if(!$result) {
+                    die("Query failed: " . mysqli_error($db_connect));
+                }
+            }
+           
         }
     }
 
@@ -429,6 +459,33 @@
             }
             removeCommentFromPost($_GET['p_id']);
             header("Location: comments.php");
+        }
+    }
+
+    function editAllComments() {
+        global $db_connect;
+        if(isset($_POST['checkBoxArray'])) {
+            $bulk_options = $_POST['bulk-options'];            
+            foreach($_POST['checkBoxArray'] as $checkboxID){
+                $query = "";
+                switch($bulk_options) {
+                    
+                    case "approved":
+                        $query = "UPDATE comments SET comment_status = '$bulk_options' WHERE comment_id = $checkboxID";
+                    break;
+                    case "denied":
+                        $query = "UPDATE comments SET comment_status = '$bulk_options' WHERE comment_id = $checkboxID";
+                    break;
+                    case "delete":
+                        $query = "DELETE FROM comments WHERE comment_id = $checkboxID";
+                    break;
+                }
+                $result = mysqli_query($db_connect, $query);
+                if(!$result) {
+                    die("Query failed: " . mysqli_error($db_connect));
+                }
+            }
+           
         }
     }
 

@@ -43,6 +43,16 @@
             </p>
 
             <hr>
+            <?php 
+                if(getCurrentUserRole() == "admin") {
+            ?>
+                    <a class="btn btn-warning" href="admin/posts.php?source=edit&update_post=<?php echo $post['post_id']; ?>">Edit Post</a>
+            <?php      
+                }
+            
+            ?>
+            
+            <hr>
 
             <!-- Blog Comments -->
             <?php
