@@ -21,7 +21,7 @@
         } 
         if(mysqli_num_rows($result) == 0) {
             $_SESSION['error_message'] = "Invalid username or pass";
-            header("Location: ../index.php");  
+            header("Location: ../index.php");
         }
 
         while($row = mysqli_fetch_assoc($result)){

@@ -4,6 +4,7 @@
     include "includes/nav.php";
     include_once "includes/functions.php";
     $post = getPost($_GET['p_id']);
+    
 ?>
 
 
@@ -63,16 +64,16 @@
                 <h4>Leave a Comment:</h4>
                 <form role="form" action="" method="post">
                     <div class="form-group">
-                        <label for="comment_author">Author</label>
-                        <input name="comment_author" type="text" class="form-control">
+                        <label for="comment_author">Author</label>                                                  
+                        <input name="comment_author" type="text" class="form-control" value="<?php showCurrentUsername();?>" required>
                     </div>
                     <div class="form-group">
                         <label for="comment_email">Email</label>
-                        <input name="comment_email" type="email" class="form-control">
+                        <input name="comment_email" type="email" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="comment_content">Content</label>
-                        <textarea name="comment_content" class="form-control" rows="3"></textarea>
+                        <textarea name="comment_content" class="form-control" rows="3" required></textarea>
                     </div>
                     <button name="create_comment" type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -84,7 +85,6 @@
             <?php
                 $comments = getAllPostComments($_GET['p_id']);
             ?>
-            <!-- Comment -->
             <?php
                 while($row = mysqli_fetch_assoc($comments)){
             ?>

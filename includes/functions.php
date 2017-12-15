@@ -185,10 +185,13 @@
                         $query = "DELETE FROM posts WHERE post_id = $checkboxID";
                     break;
                 }
-                $result = mysqli_query($db_connect, $query);
-                if(!$result) {
-                    die("Query failed: " . mysqli_error($db_connect));
+                if(!empty($query)) {
+                    $result = mysqli_query($db_connect, $query);
+                    if(!$result) {
+                        die("Query failed: " . mysqli_error($db_connect));
+                    }
                 }
+                
             }
            
         }
@@ -516,6 +519,9 @@
         if(isset($_POST['user_submit'])){
             $user_username = $_POST['user_username'];
             $user_password = $_POST['user_password'];
+
+            $user_username = mysqli_real_escape_string($db_connect, $user_username);
+            $user_password = mysqli_real_escape_string($db_connect, $user_password);
 
             //Hash password
             $hash = "$2y$10$"; // run blowfish 10 times

@@ -9,7 +9,7 @@
             </select>
         </div>
         <div class="col-xs-4">
-            <input type="submit" name="submit" value="Apply" class="btn btn-success">
+            <input onclick="return confirmAction()" type="submit" name="submit" value="Apply" class="btn btn-success">
             <a class="btn btn-primary" href="?source=add">Add New</a>
         </div>
 
@@ -43,7 +43,7 @@
                         <?php
                             echo "<td>" . $row['post_id'] . "</td>";
                             echo "<td>" . $row['post_author'] . "</td>";
-                            echo "<td>" . $row['post_title'] . "</td>";
+                            echo "<td><a href=../post.php?p_id=". $row['post_id'] . ">" . $row['post_title'] . "</a></td>";
                             echo "<td>" . $row['post_date'] . "</td>";
                             echo "<td>" . $cat_title . "</td>";
                             echo "<td>" . $row['post_status'] . "</td>";
@@ -55,7 +55,7 @@
                             <a class="btn-xs btn-warning" href="?source=edit&update_post=<?php echo $row['post_id']; ?>">Edit</a>
                         </td>
                         <td>
-                            <a class="btn-xs btn-danger" href="?delete_post=<?php echo $row['post_id']; ?>">Delete</a>
+                            <a onclick="return confirmAction()" class="btn-xs btn-danger" href="?delete_post=<?php echo $row['post_id']; ?>">Delete</a>
                         </td>
                     </tr>                                        
                     <?php
@@ -66,6 +66,9 @@
     </form>
 </div>
 <script>
+    function confirmAction() {
+        return confirm("Are you sure?");
+    }
     var selectAllBox = document.getElementById("selectAllBoxes");
     selectAllBox.addEventListener("click", function(){
         var checkboxes = document.getElementsByClassName("checkboxes");
