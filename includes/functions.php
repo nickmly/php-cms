@@ -265,7 +265,7 @@
                 <a href="post.php?p_id=<?php echo $row['post_id']; ?>"><?php echo $title; ?></a>
             </h2>
             <p class="lead">
-                by <a href="index.php"><?php echo $author; ?></a>
+                by <a href="index.php?author=<?php echo $author ?>"><?php echo $author; ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
@@ -297,7 +297,7 @@
                 <a href="post.php?p_id=<?php echo $row['post_id']; ?>"><?php echo $title; ?></a>
             </h2>
             <p class="lead">
-                by <a href="index.php"><?php echo $author; ?></a>
+                by <a href="index.php?author=<?php echo $author ?>"><?php echo $author; ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
@@ -311,7 +311,42 @@
             <hr>
         <?php
         }
-    }    
+    }
+
+    function displayPostsByAuthor($author) {
+        global $db_connect;
+        $query = "SELECT * FROM posts WHERE post_author = '$author'";
+        $result = mysqli_query($db_connect, $query);
+        if(!$result) {
+            die("Query failed: " . mysqli_error($db_connect));
+        }
+        while($row = mysqli_fetch_assoc($result)) {
+            $title = $row["post_title"];
+            $author = $row["post_author"];
+            $content = $row["post_content"];
+            $date = $row["post_date"];
+            $image = $row["post_image"];
+            ?>
+           
+            <h2>
+                <a href="post.php?p_id=<?php echo $row['post_id']; ?>"><?php echo $title; ?></a>
+            </h2>
+            <p class="lead">
+                by <a href="index.php?author=<?php echo $author ?>"><?php echo $author; ?></a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
+            <hr>
+            <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
+                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+            </a>
+            <hr>
+            <p><?php echo $content; ?></p>
+            <a class="btn btn-primary" href="post.php?p_id=<?php echo $row['post_id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+            <hr>
+        <?php
+        }        
+    }
 
     function displayPosts($posts) {
         while($row = mysqli_fetch_assoc($posts)){
@@ -327,7 +362,7 @@
             <a href="post.php?p_id=<?php echo $row['post_id']; ?>"><?php echo $title; ?></a>
             </h2>
             <p class="lead">
-                by <a href="index.php"><?php echo $author; ?></a>
+                by <a href="index.php?author=<?php echo $author ?>"><?php echo $author; ?></a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>

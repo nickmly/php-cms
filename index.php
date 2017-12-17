@@ -12,15 +12,19 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-
-            <h1 class="page-header">
-                Latest Posts
-            </h1>
+            
 
             <?php         
                 if(isset($_GET['category'])) {
                     displayPostsInCategory($_GET['category']);
+                } else if(isset($_GET['author'])) {
+                    displayPostsByAuthor($_GET['author']);
                 } else {
+                ?>
+                <h1 class="page-header">
+                    Latest Posts
+                </h1>
+                <?php
                     displayAllPosts();
                 }
             ?>           

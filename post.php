@@ -23,7 +23,7 @@
 
             <!-- Author -->
             <p class="lead">
-                by <a href="#"><?php echo $post['post_author']; ?></a>
+                by <a href="index.php?author=<?php echo $post['post_author'] ?>"><?php echo $post['post_author']; ?></a>
             </p>
 
             <hr>

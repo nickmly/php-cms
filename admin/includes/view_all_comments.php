@@ -9,7 +9,7 @@
             </select>
         </div>
         <div class="col-xs-4">
-            <input type="submit" name="submit" value="Apply" class="btn btn-success">
+            <input onclick="return confirmAction()" type="submit" name="submit" value="Apply" class="btn btn-success">
             <a class="btn btn-primary" href="?source=add">Add New</a>
         </div>
         <table class="table table-bordered table-hover">
@@ -52,7 +52,7 @@
                             <a class="btn-xs btn-warning" href="?deny_comment=<?php echo $row['comment_id']; ?>">Deny</a>
                         </td>
                         <td>
-                            <a class="btn-xs btn-danger" href="?p_id=<?php echo $row['comment_post_id']; ?>&delete_comment=<?php echo $row['comment_id']; ?>">Delete</a>
+                            <a onclick="return confirmAction()" class="btn-xs btn-danger" href="?p_id=<?php echo $row['comment_post_id']; ?>&delete_comment=<?php echo $row['comment_id']; ?>">Delete</a>
                         </td>
                     </tr>                                        
                     <?php
@@ -63,6 +63,9 @@
     </form>
 </div>
 <script>
+    function confirmAction() {
+        return confirm("Are you sure?");
+    }
     var selectAllBox = document.getElementById("selectAllBoxes");
     selectAllBox.addEventListener("click", function(){
         var checkboxes = document.getElementsByClassName("checkboxes");
