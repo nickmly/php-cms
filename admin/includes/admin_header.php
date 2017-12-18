@@ -31,14 +31,16 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Loader -->
-    <link href="css/loader.css" rel="stylesheet" type="text/css">
+    <!-- <link href="css/loader.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- JQuery -->
     <script src="js/jquery.js"></script>
 </head>
 <body>
-<div id="load-screen">
+<!-- <div id="load-screen">
     <div id="loading">
     </div>
-</div>
+</div> -->
 <div class="container">
 <?php
     if(isset($_SESSION['success_message'])) {
@@ -66,8 +68,8 @@
     $_SESSION['error_message'] = null;
 ?>
 </div>
-<script>
+<!-- <script>
     $("#load-screen").delay(700).fadeOut(600, function() {
         $(this).remove();
     });
-</script>
+</script> -->

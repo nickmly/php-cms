@@ -24,6 +24,7 @@
                 <h1 class="page-header">
                     Latest Posts
                 </h1>
+                <hr>
                 <?php
                     displayAllPosts();
                 }

@@ -34,7 +34,7 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src="images/<?php echo $post['post_image']; ?>" alt="">
+            <img class="img-fluid" src="images/<?php echo $post['post_image']; ?>" alt="">
 
             <hr>
 
@@ -107,16 +107,12 @@
 
         </div>
         <hr>
-
-         <!-- Blog Sidebar Widgets Column -->
-         <?php include "includes/sidebar.php"; ?>
-        
+        <!-- Blog Sidebar Widgets Column -->
+        <?php include "includes/sidebar.php"; ?>    
 
     </div>
-    <!-- /.row -->
     <hr>
 </div>
-<!-- /.container -->
 
 <?php
     include "includes/footer.php";

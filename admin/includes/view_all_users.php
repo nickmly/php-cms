@@ -28,10 +28,10 @@
                         echo "<td>" . $row['user_role'] . "</td>";
                     ?>
                     <td>
-                        <a class="btn-xs btn-warning" href="?source=edit&update_user=<?php echo $row['user_id']; ?>">Edit</a>
+                        <a class="btn-sm btn-warning" href="?source=edit&update_user=<?php echo $row['user_id']; ?>">Edit</a>
                     </td>
                     <td>
-                        <a class="btn-xs btn-danger" href="?delete_user=<?php echo $row['user_id']; ?>">Delete</a>
+                        <a class="btn-sm btn-danger" href="?delete_user=<?php echo $row['user_id']; ?>">Delete</a>
                     </td>
                 </tr>                                        
                 <?php

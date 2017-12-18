@@ -20,6 +20,9 @@
     <!-- Custom CSS -->
     <link href="css/blog-home.css" rel="stylesheet">
 
+    <!-- Font Awesome CSS -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <div class="container">

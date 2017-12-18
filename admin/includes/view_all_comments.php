@@ -46,13 +46,13 @@
                             echo "<td>" . $row['comment_status'] . "</td>";
                         ?>
                         <td>
-                            <a class="btn-xs btn-success" href="?approve_comment=<?php echo $row['comment_id']; ?>">Approve</a>
+                            <a class="btn-sm btn-success" href="?approve_comment=<?php echo $row['comment_id']; ?>">Approve</a>
                         </td>
                         <td>
-                            <a class="btn-xs btn-warning" href="?deny_comment=<?php echo $row['comment_id']; ?>">Deny</a>
+                            <a class="btn-sm btn-warning" href="?deny_comment=<?php echo $row['comment_id']; ?>">Deny</a>
                         </td>
                         <td>
-                            <a onclick="return confirmAction()" class="btn-xs btn-danger" href="?p_id=<?php echo $row['comment_post_id']; ?>&delete_comment=<?php echo $row['comment_id']; ?>">Delete</a>
+                            <a onclick="return confirmAction()" class="btn-sm btn-danger" href="?p_id=<?php echo $row['comment_post_id']; ?>&delete_comment=<?php echo $row['comment_id']; ?>">Delete</a>
                         </td>
                     </tr>                                        
                     <?php

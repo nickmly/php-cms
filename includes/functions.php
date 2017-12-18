@@ -270,7 +270,7 @@
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
             <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
-                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+                <img class="img-fluid" src="images/<?php echo $image; ?>" alt="">
             </a>
             <hr>
             <p><?php echo substr($content,0,100); ?></p>
@@ -302,7 +302,7 @@
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
             <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
-                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+                <img class="img-fluid" src="images/<?php echo $image; ?>" alt="">
             </a>
             <hr>
             <p><?php echo $content; ?></p>
@@ -337,7 +337,7 @@
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
             <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
-                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+                <img class="img-fluid" src="images/<?php echo $image; ?>" alt="">
             </a>
             <hr>
             <p><?php echo $content; ?></p>
@@ -367,7 +367,7 @@
             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $date; ?></p>
             <hr>
             <a href="post.php?p_id=<?php echo $row['post_id']; ?>">
-                <img class="img-responsive" src="images/<?php echo $image; ?>" alt="">
+                <img class="img-fluid" src="images/<?php echo $image; ?>" alt="">
             </a>
             <hr>
             <p><?php echo $content; ?></p>

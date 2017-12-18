@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label for="user_image">User Image</label>
-                            <img class="img-responsive" src="../images/<?php echo $user['user_image']; ?>">
+                            <img class="img-fluid" src="../images/<?php echo $user['user_image']; ?>">
                             <input type="file" name="user_image" class="btn btn-default">        
                         </div>
                         <div class="form-group">

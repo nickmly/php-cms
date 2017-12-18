@@ -59,101 +59,76 @@
             </div>
             <!-- /.row -->                 
 
-                
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-file-text fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                        <div class='huge'><?php echo $post_count; ?></div>
-                                <div>Posts</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="posts.php">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
+        <div class="card-group">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <span class="card-title">                    
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </span>
+                    <span class="huge card-text float-right">
+                        <?php echo $post_count; ?>                        
+                    </span>
+                    <p class="text-right">Posts</p>               
                 </div>
+                <a href="posts.php">
+                    <div class="card-footer text-primary">
+                        More details <i class="fa fa-arrow-circle-right pull-right"></i>
+                    </div>
+                </a>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-comments fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                            <div class='huge'><?php echo $comment_count; ?></div>
-                            <div>Comments</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="comments.php">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
+            <div class="card border-success">
+                <div class="card-body">
+                    <span class="card-title">                    
+                        <i class="fa fa-comments fa-5x"></i>
+                    </span>
+                    <span class="huge card-text float-right">
+                        <?php echo $comment_count; ?>                       
+                    </span>
+                    <p class="text-right">Comments</p>                            
                 </div>
+                <a href="comments.php">
+                    <div class="card-footer text-success">
+                        More details <i class="fa fa-arrow-circle-right pull-right"></i>
+                    </div>
+                </a>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-user fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                            <div class='huge'><?php echo $user_count; ?></div>
-                                <div> Users</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="users.php">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
+            <div class="card border-danger">
+                <div class="card-body">
+                    <span class="card-title">                    
+                        <i class="fa fa-users fa-5x"></i>
+                    </span>
+                    <span class="huge card-text float-right">
+                        <?php echo $user_count; ?>                       
+                    </span>
+                    <p class="text-right">Users</p>                            
                 </div>
+                <a href="users.php">
+                    <div class="card-footer text-danger">
+                        More details <i class="fa fa-arrow-circle-right pull-right"></i>
+                    </div>
+                </a>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-list fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class='huge'><?php echo $category_count; ?></div>
-                                <div>Categories</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="categories.php">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
+            <div class="card border-warning">
+                <div class="card-body">
+                    <span class="card-title">                    
+                        <i class="fa fa-list fa-5x"></i>
+                    </span>
+                    <span class="huge card-text float-right">
+                        <?php echo $category_count; ?>                       
+                    </span>
+                    <p class="text-right">Categories</p>                            
                 </div>
+                <a href="categories.php">
+                    <div class="card-footer text-warning">
+                        More details <i class="fa fa-arrow-circle-right pull-right"></i>
+                    </div>
+                </a>
             </div>
         </div>
-        <!-- /.row -->
-        <div class="row">            
-            <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
-        </div>
+        
+        <hr>   
+        <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
+        
 
         </div>
         <!-- /.container-fluid -->
