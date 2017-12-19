@@ -1,5 +1,6 @@
 <?php 
-    include_once "includes/functions.php";
+    include_once "includes/user_functions.php";
+    include_once "includes/category_functions.php";
 ?>
 <div class="col-md-4">
     <?php

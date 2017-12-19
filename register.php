@@ -1,7 +1,7 @@
 <?php
     include "includes/header.php";
     include "includes/nav.php";
-    include_once "includes/functions.php";
+    include_once "includes/user_functions.php";
     addUser(false);
 ?>
 <div class="container">

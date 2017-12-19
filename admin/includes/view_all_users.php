@@ -20,7 +20,7 @@
                 <tr>
                     <?php                        
                         echo "<td>" . $row['user_id'] . "</td>";
-                        echo "<td><img class='img-responsive' src='../images/" . $row['user_image'] . "'></td>";                  
+                        echo "<td><img class='img-fluid' src='../images/" . $row['user_image'] . "'></td>";                  
                         echo "<td>" . $row['user_username'] . "</td>";
                         echo "<td>" . $row['user_firstname'] . "</td>";
                         echo "<td>" . $row['user_lastname'] . "</td>";

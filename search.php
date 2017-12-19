@@ -2,7 +2,7 @@
     include "includes/db.php";
     include "includes/header.php";
     include "includes/nav.php";
-    include_once "includes/functions.php";
+    include_once "includes/post_functions.php";
 ?>
 
 <!-- Page Content -->

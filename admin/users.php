@@ -1,6 +1,5 @@
 <?php 
     include "includes/admin_header.php";
-    include_once "../includes/functions.php";
 ?>
 <div id="wrapper">
 

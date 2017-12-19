@@ -1,7 +1,7 @@
 <?php
     ob_start();
     include "../includes/db.php";
-    include "../includes/functions.php";
+    include "../includes/user_functions.php";
 ?>
 
 <?php

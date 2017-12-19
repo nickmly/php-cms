@@ -1,5 +1,5 @@
 <?php
-    include_once __DIR__ . "/../../includes/functions.php";
+    include_once __DIR__ . "/../../includes/user_functions.php";
     $user = getUser($_GET['update_user']);
     editUser();
 ?>

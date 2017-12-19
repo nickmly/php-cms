@@ -1,6 +1,6 @@
 <?php 
     include "includes/db.php";
-    include_once "includes/functions.php";
+    include_once "includes/user_functions.php";
 ?>
 
  <!-- Navigation -->

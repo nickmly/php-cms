@@ -2,7 +2,8 @@
     include "includes/db.php";
     include "includes/header.php";
     include "includes/nav.php";
-    include_once "includes/functions.php";
+    include_once "includes/post_functions.php";
+    include_once "includes/comment_functions.php";
     $post = getPost($_GET['p_id']);
     
 ?>
@@ -59,6 +60,7 @@
             <?php
                 addComment();
             ?>
+
             <!-- Comments Form -->
             <div class="well">
                 <h4>Leave a Comment:</h4>
@@ -101,8 +103,7 @@
                     </div>
                 <?php
                 }
-            ?>
-            
+            ?>           
            
 
         </div>

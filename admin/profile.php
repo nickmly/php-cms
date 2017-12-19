@@ -1,6 +1,6 @@
 <?php
     include "includes/admin_header.php";
-    include_once "../includes/functions.php";
+    include_once "../includes/user_functions.php";
     if(session_status() == PHP_SESSION_NONE)
         session_start();
 

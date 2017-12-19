@@ -1,7 +1,7 @@
 <?php 
     if(session_status() == PHP_SESSION_NONE)
         session_start();
-    include_once "../includes/functions.php";
+    include_once "../includes/user_functions.php";
 ?>
 
 

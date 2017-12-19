@@ -1,6 +1,7 @@
 <?php 
     include "includes/admin_header.php";
-    include_once "../includes/functions.php";
+    include "../includes/category_functions.php";
+    include "../includes/post_functions.php";
 ?>
 <div id="wrapper">
 

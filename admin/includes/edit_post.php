@@ -1,5 +1,6 @@
 <?php
-    include_once __DIR__ . "/../../includes/functions.php";
+    include_once __DIR__ . "/../../includes/post_functions.php";
+    include_once __DIR__ . "/../../includes/category_functions.php";
     $post = getPost($_GET['update_post']);
     editPost();
 ?>

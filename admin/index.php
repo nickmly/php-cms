@@ -1,6 +1,10 @@
 <?php 
     include "includes/admin_header.php";
     include_once "../includes/functions.php";
+    include_once "../includes/user_functions.php";
+    include_once "../includes/comment_functions.php";
+    include_once "../includes/post_functions.php";
+
     $post_count = getTableCount("posts");
     $category_count = getTableCount("categories");
     $user_count = getTableCount("users");

@@ -1,5 +1,6 @@
 <?php
-    include_once __DIR__ . "/../../includes/functions.php";
+    include_once __DIR__ . "/../../includes/post_functions.php";
+    include_once __DIR__ . "/../../includes/category_functions.php";
     addPost();
 ?>
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>

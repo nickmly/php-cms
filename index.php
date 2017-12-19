@@ -2,18 +2,14 @@
     include "includes/db.php";
     include "includes/header.php";
     include "includes/nav.php";
-    include_once "includes/functions.php";
+    include_once "includes/category_functions.php";
+    include_once "includes/post_functions.php";
 ?>
 
 <!-- Page Content -->
-
-
     <div class="row">
-
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            
-
             <?php         
                 if(isset($_GET['category'])) {
                     displayPostsInCategory($_GET['category']);
@@ -28,13 +24,10 @@
                 <?php
                     displayAllPosts();
                 }
-            ?>       
-
+            ?>
         </div>
         <!-- Blog Sidebar Widgets Column -->
         <?php include "includes/sidebar.php"; ?>
-        
-
     </div>
     <!-- /.row -->
 
